@@ -195,6 +195,8 @@ Item {
 
         var replacements = plasmoid.configuration.titleReplacements;
 
+        replacements = replacements.replace(/\n/g, ";");
+        replacements = replacements.replace(/;;/g, ";");
         replacements = replacements.replace(/; | ;/g, ";");
         replacements = replacements.replace(/, | ,/g, ",");
 
