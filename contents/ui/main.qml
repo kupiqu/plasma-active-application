@@ -203,11 +203,16 @@ Item {
         var appReplacements = replacements.split(";");
 
         for (var iReplacement = 0; iReplacement < appReplacements.length; iReplacement++){
-            appReplacements[iReplacement] = appReplacements[iReplacement].replace(/"/g, "");
 
-            var repText = appReplacements[iReplacement].split(",");
+            if (appReplacements[iReplacement].length > 0) {
 
-            title = title.replace(repText[0],repText[1]);
+                appReplacements[iReplacement] = appReplacements[iReplacement].replace(/"/g, "");
+
+                var repText = appReplacements[iReplacement].split(",");
+
+                title = title.replace(repText[0],repText[1]);
+            }
+
         }
         return title;
     }
