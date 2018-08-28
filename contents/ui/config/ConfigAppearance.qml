@@ -57,7 +57,7 @@ Item {
             }
 
             Label {
-              text: i18n('Replacements:\nuse newline or ";" as delimiter')
+                text: i18n('Replacements:\nuse newline or ";" as delimiter')
                 wrapMode: Text.Wrap
             }
             TextArea {
@@ -79,7 +79,7 @@ Item {
             columns: 2
 
             Label {
-              text: i18n('No window text:\nuse %activity% for activity name')
+                text: i18n('No window text:\nuse %activity% for activity name')
                 wrapMode: Text.Wrap
             }
             TextField {
