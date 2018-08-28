@@ -78,6 +78,10 @@ Item {
         return activeTaskLocal.display !== undefined
     }
 
+    function toggleMaximized() {
+        tasksModel.requestToggleMaximized(tasksModel.activeTask);
+    }
+
     function updateTooltip() {
         tooltipText = activeTask().display || ''
     }
@@ -220,6 +224,12 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+
+        onDoubleClicked: {
+            if (mouse.button == Qt.LeftButton) {
+                toggleMaximized()
+            }
+        }
 
         hoverEnabled: true
 
