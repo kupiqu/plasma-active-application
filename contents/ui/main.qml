@@ -210,7 +210,8 @@ Item {
 
                 var repText = appReplacements[iReplacement].split(",");
 
-                title = title.replace(repText[0],repText[1]);
+                var regEx = new RegExp(repText[0], "ig"); //case insensitive
+                title = title.replace(regEx,repText[1]);
             }
 
         }
