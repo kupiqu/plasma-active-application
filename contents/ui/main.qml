@@ -1,5 +1,6 @@
 /*
- * Copyright 2018  avlas <jsardid@gmail.com>
+ * Copyright 2018  avlas <jsardid@gmail.com> (based on Kotalnik and Broulik
+ * work)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -32,6 +33,7 @@ Item {
     property string tooltipText: ''
 
     anchors.fill: parent
+    anchors.left:  parent.left
 
     Layout.fillWidth: false
     Layout.minimumWidth: activeWindow.width
@@ -39,9 +41,7 @@ Item {
 
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 
-    //
-    // MODEL
-    //
+    //TasksModel
     TaskManager.TasksModel {
         id: tasksModel
 
@@ -82,6 +82,14 @@ Item {
         tasksModel.requestToggleMaximized(tasksModel.activeTask);
     }
 
+    function toggleMinimized() {
+        tasksModel.requestToggleMinimized(tasksModel.activeTask);
+    }
+
+    function toggleClose() {
+        tasksModel.requestClose(tasksModel.activeTask);
+    }
+
     function updateTooltip() {
         tooltipText = activeTask().display || ''
     }
@@ -115,12 +123,11 @@ Item {
             windowTitleText.text = reverseTitleOrder(fineTuning(actTask.display))
             iconItem.source = actTask.decoration
         }
+
         updateTooltip()
     }
 
-    //
-    // ACTIVE WINDOW INFO
-    //
+    // active window info
     Item {
         id: activeWindow
 
@@ -161,7 +168,6 @@ Item {
                 elide: Text.ElideNone
                 font.weight: plasmoid.configuration.boldFontWeight ? Font.Bold : theme.defaultFont.weight
             }
-
         }
     }
 
@@ -225,9 +231,21 @@ Item {
     MouseArea {
         anchors.fill: parent
 
-        onDoubleClicked: {
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+
+        onClicked: {
             if (mouse.button == Qt.LeftButton) {
                 toggleMaximized()
+            }
+
+            if (mouse.button == Qt.MiddleButton) {
+                toggleClose()
+            }
+        }
+
+        onDoubleClicked: {
+            if (mouse.button == Qt.LeftButton) {
+                toggleMinimized()
             }
         }
 
