@@ -23,11 +23,12 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.taskmanager 0.1 as TaskManager
 import org.kde.activities 0.1 as Activities
+import org.kde.plasma.private.appmenu 1.0 as AppMenuPrivate
 
 Item {
     id: main
 
-    property bool noWindowActive: true
+    property bool windowActive: false
     property bool mouseHover: false
     property var activeTaskLocal: null
     property string tooltipText: ''
@@ -56,13 +57,16 @@ Item {
         }
     }
 
+    //AppMenuModel (focus state)
+    AppMenuPrivate.AppMenuModel {
+        id: appMenuModel
+    }
+
     TaskManager.ActivityInfo {
         id: activityInfo
 
         onCurrentActivityChanged: {
-            if (noWindowActive) {
-                updateActiveWindowInfo();
-            }
+            updateActiveWindowInfo();
         }
     }
 
@@ -75,7 +79,7 @@ Item {
     }
 
     function activeTaskExists() {
-        return activeTaskLocal.display !== undefined
+        return activeTask().display !== undefined
     }
 
     function toggleMaximized() {
@@ -115,15 +119,14 @@ Item {
         }
 
         var actTask = activeTask()
-        noWindowActive = !activeTaskExists()
-        if (noWindowActive) {
-            windowTitleText.text = composeNoWindowText()
-            iconItem.source = plasmoid.configuration.noWindowIcon
-        } else {
+        windowActive = activeTaskExists()
+        if (windowActive) {
             windowTitleText.text = reverseTitleOrder(fineTuning(actTask.display))
             iconItem.source = actTask.decoration
+        } else if (!appMenuModel.menuAvailable || windowTitleText.text === "") {
+            windowTitleText.text = composeNoWindowText()
+            iconItem.source = plasmoid.configuration.noWindowIcon
         }
-
         updateTooltip()
     }
 
@@ -163,7 +166,7 @@ Item {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 height: parent.height
-                text: plasmoid.configuration.noWindowText
+                text: updateActiveWindowInfo()
                 wrapMode: Text.NoWrap
                 elide: Text.ElideNone
                 font.weight: plasmoid.configuration.boldFontWeight ? Font.Bold : theme.defaultFont.weight
