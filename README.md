@@ -4,7 +4,7 @@ KDE plasma applet to show the active application name. Thought to be used in a p
 
 ## Motivation
 
-Unfortunately [AWC] (https://github.com/kotelnik/plasma-applet-active-window-control) does not seem to be maintained anymore. The experience from the official plasma global menu is currently better, but it is currently missing the active application name.
+Unfortunately [AWC](https://github.com/kotelnik/plasma-applet-active-window-control) does not seem to be maintained anymore. The experience from the official plasma global menu is currently better, but it is currently missing the active application name.
 
 ## Features
 
@@ -36,4 +36,4 @@ Unfortunately [AWC] (https://github.com/kotelnik/plasma-applet-active-window-con
 
 ## Credit where it is due
 
-Strongly based on [AWC] (https://github.com/kotelnik/plasma-applet-active-window-control)
+Strongly based on [AWC](https://github.com/kotelnik/plasma-applet-active-window-control)
