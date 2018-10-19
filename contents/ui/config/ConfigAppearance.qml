@@ -18,7 +18,7 @@ Item {
         columns: 2
 
         Label {
-            text: i18n('Plasmoid version: ') + '0.0.1'
+            text: i18n('Plasmoid version: ') + '0.1'
             Layout.columnSpan: 2
         }
 
