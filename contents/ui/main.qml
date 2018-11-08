@@ -240,18 +240,17 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
 
         onClicked: {
-            if (mouse.button == Qt.LeftButton) {
-                toggleMaximized()
-            }
-
             if (mouse.button == Qt.MiddleButton) {
                 toggleClose()
             }
         }
 
         onDoubleClicked: {
+            // if (mouse.button == Qt.LeftButton) {
+            //     toggleMinimized()
+            // }
             if (mouse.button == Qt.LeftButton) {
-                toggleMinimized()
+                toggleMaximized()
             }
         }
 
