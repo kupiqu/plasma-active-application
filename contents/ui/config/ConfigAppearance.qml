@@ -20,7 +20,7 @@ Item {
         columns: 2
 
         Label {
-            text: i18n('Plasmoid version: ') + '0.1'
+            text: i18n('Plasmoid version: ') + '0.1.95 (0.2 beta)'
             Layout.columnSpan: 2
         }
 
@@ -78,7 +78,7 @@ Item {
             }
             TextArea {
                 id: titleReplacements
-                text: '"Mozilla ", ""; "Google ", ""; ": Chromium", " — Chromium"; " Player", ""'
+                text: '".* Firefox", "Firefox";\n".* Chromium", "Chromium";\n"Google ", "";\n " Player", "";\n'
                 onTextChanged: cfg_titleReplacements = text
                 Layout.preferredWidth: 500
             }
@@ -100,7 +100,7 @@ Item {
             }
             TextField {
                 id: noWindowText
-                placeholderText: 'plasma-kde@%activity%'
+                placeholderText: 'KDE :: Plasma Desktop @ %activity%'
                 onTextChanged: cfg_noWindowText = text
                 Layout.preferredWidth: 300
             }

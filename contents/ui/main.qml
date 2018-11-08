@@ -79,7 +79,7 @@ Item {
     }
 
     function activeTaskExists() {
-        return activeTask().display !== undefined
+        return activeTask().display !== undefined || activeTask().appName !== undefined
     }
 
     function toggleMaximized() {
@@ -113,6 +113,7 @@ Item {
             activeTaskLocal = {}
         } else {
             activeTaskLocal = {
+                appName: tasksModel.data(activeTaskIndex, abstractTasksModel.AppName),
                 display: tasksModel.data(activeTaskIndex, Qt.DisplayRole),
                 decoration: tasksModel.data(activeTaskIndex, Qt.DecorationRole),
             }
@@ -121,10 +122,11 @@ Item {
         var actTask = activeTask()
         windowActive = activeTaskExists()
         if (windowActive) {
-            windowTitleText.text = reverseTitleOrder(fineTuning(actTask.display))
+            // activeWindowName.text = reverseTitleOrder(fineTuning(actTask.display))
+            activeWindowName.text = fineTuning(actTask.appName)
             iconItem.source = actTask.decoration
-        } else if (!appMenuModel.menuAvailable || windowTitleText.text === "") {
-            windowTitleText.text = composeNoWindowText()
+        } else if (!appMenuModel.menuAvailable || activeWindowName.text === "") {
+            activeWindowName.text = composeNoWindowText()
             iconItem.source = plasmoid.configuration.noWindowIcon
         }
         updateTooltip()
@@ -141,7 +143,7 @@ Item {
         anchors.leftMargin: plasmoid.configuration.leftSpacing
         anchors.rightMargin: plasmoid.configuration.rightSpacing
 
-        width: plasmoid.configuration.showWindowIcon ? anchors.leftMargin + iconItem.width + plasmoid.configuration.iconAppNameSpacing + windowTitleText.width + anchors.rightMargin : anchors.leftMargin + windowTitleText.width + anchors.rightMargin
+        width: plasmoid.configuration.showWindowIcon ? anchors.leftMargin + iconItem.width + plasmoid.configuration.iconAppNameSpacing + activeWindowName.width + anchors.rightMargin : anchors.leftMargin + activeWindowName.width + anchors.rightMargin
 
         Item {
             height: main.height
@@ -159,7 +161,7 @@ Item {
 
             // window title
             PlasmaComponents.Label {
-                id: windowTitleText
+                id: activeWindowName
 
                 anchors.left: parent.left
                 anchors.leftMargin: plasmoid.configuration.showWindowIcon ? iconItem.width + plasmoid.configuration.iconAppNameSpacing : 0
@@ -167,6 +169,7 @@ Item {
                 anchors.bottom: parent.bottom
                 height: parent.height
                 text: updateActiveWindowInfo()
+                font.capitalization: Font.Capitalize
                 wrapMode: Text.NoWrap
                 elide: Text.ElideNone
                 font.weight: plasmoid.configuration.boldFontWeight ? Font.Bold : theme.defaultFont.weight
@@ -174,35 +177,35 @@ Item {
         }
     }
 
-    function reverseTitleOrder(title) {
-
-        var revTitle;
-        var lastPos = title.lastIndexOf(" — "); //  U+2014 "EM DASH"
-        if (lastPos > -1) {
-            revTitle = title.slice(lastPos + 3, title.length);
-        }
-        else {
-            lastPos = title.lastIndexOf(" – "); // U+2013 "EN DASH"
-            if (lastPos > -1) {
-                revTitle = title.slice(lastPos + 3, title.length);
-            }
-            else {
-                lastPos = title.lastIndexOf(" - "); // ASCII Dash
-                if (lastPos > -1) {
-                    revTitle = title.slice(lastPos + 3, title.length);
-                }
-                else {
-                    lastPos = title.lastIndexOf(": "); // semicolon
-                    if (lastPos > -1) {
-                        revTitle = title.slice(lastPos + 2, title.length);
-                    }
-                    else
-                        revTitle = title;
-                }
-            }
-        }
-        return revTitle;
-    }
+//     function reverseTitleOrder(title) {
+//
+//         var revTitle;
+//         var lastPos = title.lastIndexOf(" — "); //  U+2014 "EM DASH"
+//         if (lastPos > -1) {
+//             revTitle = title.slice(lastPos + 3, title.length);
+//         }
+//         else {
+//             lastPos = title.lastIndexOf(" – "); // U+2013 "EN DASH"
+//             if (lastPos > -1) {
+//                 revTitle = title.slice(lastPos + 3, title.length);
+//             }
+//             else {
+//                 lastPos = title.lastIndexOf(" - "); // ASCII Dash
+//                 if (lastPos > -1) {
+//                     revTitle = title.slice(lastPos + 3, title.length);
+//                 }
+//                 else {
+//                     lastPos = title.lastIndexOf(": "); // semicolon
+//                     if (lastPos > -1) {
+//                         revTitle = title.slice(lastPos + 2, title.length);
+//                     }
+//                     else
+//                         revTitle = title;
+//                 }
+//             }
+//         }
+//         return revTitle;
+//     }
 
     function fineTuning(title) {
 
