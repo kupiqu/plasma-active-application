@@ -78,7 +78,7 @@ Item {
             }
             TextArea {
                 id: titleReplacements
-                text: '".* Firefox", "Firefox";\n".* Chromium", "Chromium";\n"Google ", "";\n " Player", "";\n'
+                text: '".* Firefox", "Firefox";\n".* Chromium", "Chromium";\n"Google ", "";\n " Player", "";\n"Gimp.*", "Gimp";\n'
                 onTextChanged: cfg_titleReplacements = text
                 Layout.preferredWidth: 500
             }
