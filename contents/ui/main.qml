@@ -138,10 +138,10 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
 
-        anchors.leftMargin: plasmoid.configuration.iconAndTextSpacing
-        anchors.rightMargin: plasmoid.configuration.iconAndTextSpacing
+        anchors.leftMargin: plasmoid.configuration.leftSpacing
+        anchors.rightMargin: plasmoid.configuration.rightSpacing
 
-        width: plasmoid.configuration.showWindowIcon ? anchors.leftMargin + iconItem.width + plasmoid.configuration.iconAndTextSpacing + windowTitleText.width + anchors.rightMargin : anchors.leftMargin + windowTitleText.width + anchors.rightMargin
+        width: plasmoid.configuration.showWindowIcon ? anchors.leftMargin + iconItem.width + plasmoid.configuration.iconAppNameSpacing + windowTitleText.width + anchors.rightMargin : anchors.leftMargin + windowTitleText.width + anchors.rightMargin
 
         Item {
             height: main.height
@@ -162,7 +162,7 @@ Item {
                 id: windowTitleText
 
                 anchors.left: parent.left
-                anchors.leftMargin: plasmoid.configuration.showWindowIcon ? iconItem.width + plasmoid.configuration.iconAndTextSpacing : 0
+                anchors.leftMargin: plasmoid.configuration.showWindowIcon ? iconItem.width + plasmoid.configuration.iconAppNameSpacing : 0
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 height: parent.height

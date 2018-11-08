@@ -8,7 +8,9 @@ Item {
 
     property alias cfg_boldFontWeight: boldFontWeight.checked
     property alias cfg_showWindowIcon: showWindowIcon.checked
-    property alias cfg_iconAndTextSpacing: iconAndTextSpacing.value
+    property alias cfg_leftSpacing: leftSpacing.value
+    property alias cfg_iconAppNameSpacing: iconAppNameSpacing.value
+    property alias cfg_rightSpacing: rightSpacing.value
     property alias cfg_titleReplacements: titleReplacements.text
 
     property alias cfg_noWindowText: noWindowText.text
@@ -46,14 +48,28 @@ Item {
             }
 
             Label {
-                text: i18n("Spacing:")
+                text: i18n("Spacing (Left/Icon-AppName/Right):")
             }
             SpinBox {
-                id: iconAndTextSpacing
+                id: leftSpacing
                 decimals: 1
                 stepSize: 0.5
                 minimumValue: 0
-                maximumValue: 100
+                maximumValue: 50
+            }
+            SpinBox {
+                id: iconAppNameSpacing
+                decimals: 1
+                stepSize: 0.5
+                minimumValue: 0
+                maximumValue: 50
+            }
+            SpinBox {
+                id: rightSpacing
+                decimals: 1
+                stepSize: 0.5
+                minimumValue: 0
+                maximumValue: 50
             }
 
             Label {

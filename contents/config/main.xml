@@ -12,8 +12,14 @@
         <entry name="showWindowIcon" type="Bool">
           <default>false</default>
         </entry>
-        <entry name="iconAndTextSpacing" type="Double">
-            <default>10</default>
+        <entry name="leftSpacing" type="Double">
+          <default>12</default>
+        </entry>
+        <entry name="iconAppNameSpacing" type="Double">
+            <default>16</default>
+        </entry>
+        <entry name="rightSpacing" type="Double">
+          <default>10</default>
         </entry>
         <entry name="titleReplacements" type="String">
           <default>"Mozilla ", ""; "Google ", ""; ": Chromium", " — Chromium"; " Player", ""</default>
