@@ -8,10 +8,10 @@ Unfortunately [AWC](https://github.com/kotelnik/plasma-applet-active-window-cont
 
 ## Features
 
-- Easy replacements through the configuration interface
-- Maximaze/Restore (click) or Minimize (double-click)
+- Easy replacements through the configuration interface (see issue [#1](https://github.com/kupiqu/plasma-active-application/issues/1) for instructions)
+- Maximaze/Restore (double-click) or close (middle-click)
 - Full window title tooltip
-- Configurable: Bold text, Show window icon, Spacing, No window text (activity friendly), No window icon
+- Configurable: Bold text, Show window icon, Spacing (Left, Right and in between of Icon and AppName), No window text (activity friendly), No window icon
 
 ## Preview
 
