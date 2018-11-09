@@ -122,7 +122,6 @@ Item {
         var actTask = activeTask()
         windowActive = activeTaskExists()
         if (windowActive) {
-            // activeWindowName.text = reverseTitleOrder(fineTuning(actTask.display))
             activeWindowName.text = fineTuning(actTask.appName)
             iconItem.source = actTask.decoration
         } else if (!appMenuModel.menuAvailable || activeWindowName.text === "") {
@@ -169,43 +168,12 @@ Item {
                 anchors.bottom: parent.bottom
                 height: parent.height
                 text: updateActiveWindowInfo()
-                font.capitalization: Font.Capitalize
                 wrapMode: Text.NoWrap
                 elide: Text.ElideNone
                 font.weight: plasmoid.configuration.boldFontWeight ? Font.Bold : theme.defaultFont.weight
             }
         }
     }
-
-//     function reverseTitleOrder(title) {
-//
-//         var revTitle;
-//         var lastPos = title.lastIndexOf(" — "); //  U+2014 "EM DASH"
-//         if (lastPos > -1) {
-//             revTitle = title.slice(lastPos + 3, title.length);
-//         }
-//         else {
-//             lastPos = title.lastIndexOf(" – "); // U+2013 "EN DASH"
-//             if (lastPos > -1) {
-//                 revTitle = title.slice(lastPos + 3, title.length);
-//             }
-//             else {
-//                 lastPos = title.lastIndexOf(" - "); // ASCII Dash
-//                 if (lastPos > -1) {
-//                     revTitle = title.slice(lastPos + 3, title.length);
-//                 }
-//                 else {
-//                     lastPos = title.lastIndexOf(": "); // semicolon
-//                     if (lastPos > -1) {
-//                         revTitle = title.slice(lastPos + 2, title.length);
-//                     }
-//                     else
-//                         revTitle = title;
-//                 }
-//             }
-//         }
-//         return revTitle;
-//     }
 
     function fineTuning(title) {
 
