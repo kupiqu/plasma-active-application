@@ -19,14 +19,16 @@ Item {
     GridLayout {
         columns: 2
 
+        Layout.columnSpan: 2
+
         Label {
-            text: i18n('Plasmoid version: ') + '0.1.95 (0.2 beta)'
+            text: i18n('Plasmoid version: ') + '0.2'
             Layout.columnSpan: 2
         }
 
         Item {
             width: 2
-            height: 10
+            height: 15
             Layout.columnSpan: 2
         }
 
@@ -50,49 +52,54 @@ Item {
             Label {
                 text: i18n("Spacing (Left/Icon-AppName/Right):")
             }
-            SpinBox {
-                id: leftSpacing
-                decimals: 1
-                stepSize: 0.5
-                minimumValue: 0
-                maximumValue: 50
+            Row {
+                spacing: 50
+                SpinBox {
+                    id: leftSpacing
+                    decimals: 1
+                    stepSize: 0.5
+                    minimumValue: 0
+                    maximumValue: 50
+                }
+                SpinBox {
+                    id: iconAppNameSpacing
+                    decimals: 1
+                    stepSize: 0.5
+                    minimumValue: 0
+                    maximumValue: 50
+                }
+                SpinBox {
+                    id: rightSpacing
+                    decimals: 1
+                    stepSize: 0.5
+                    minimumValue: 0
+                    maximumValue: 50
+                }
             }
-            SpinBox {
-                id: iconAppNameSpacing
-                decimals: 1
-                stepSize: 0.5
-                minimumValue: 0
-                maximumValue: 50
-            }
-            SpinBox {
-                id: rightSpacing
-                decimals: 1
-                stepSize: 0.5
-                minimumValue: 0
-                maximumValue: 50
+
+            Item {
+                width: 2
+                height: 15
+                Layout.columnSpan: 2
             }
 
             Label {
-                text: i18n('Replacements:\nuse newline or ";" as delimiter')
-                wrapMode: Text.Wrap
+                    text: i18n('Replacements:\nuse newline or ";" as delimiter')
+                    wrapMode: Text.Wrap
             }
+
             TextArea {
-                id: titleReplacements
-                text: '".* Firefox", "Firefox";\n".* Chromium", "Chromium";\n"Google ", "";\n " Player", "";\n"Gimp.*", "Gimp";\n'
-                onTextChanged: cfg_titleReplacements = text
-                Layout.preferredWidth: 500
+                    id: titleReplacements
+                    text: '".* Firefox", "Firefox";\n".* Chromium", "Chromium";\n"Google ", "";\n " Player", "";\n"Gimp.*", "Gimp";\n'
+                    onTextChanged: cfg_titleReplacements = text
+                    Layout.preferredWidth: 400
             }
 
-        }
-
-        Item {
-            width: 2
-            height: 10
-            Layout.columnSpan: 2
-        }
-
-        GridLayout {
-            columns: 2
+            Item {
+                width: 2
+                height: 15
+                Layout.columnSpan: 2
+            }
 
             Label {
                 text: i18n('No window text:\nuse %activity% for activity name')
@@ -102,7 +109,7 @@ Item {
                 id: noWindowText
                 placeholderText: 'KDE :: Plasma Desktop @ %activity%'
                 onTextChanged: cfg_noWindowText = text
-                Layout.preferredWidth: 300
+                Layout.preferredWidth: 400
             }
 
             Label {
@@ -114,7 +121,6 @@ Item {
                 onIconChanged: cfg_noWindowIcon = iconName
             }
         }
-
     }
 
 }
