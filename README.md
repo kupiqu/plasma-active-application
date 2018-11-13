@@ -1,3 +1,7 @@
+# Discontinued
+
+It doesn't make sense to duplicate efforts. Please use the Window Title Applet, which is better integrated with Latte Dock technology: https://github.com/psifidotos/applet-window-title
+
 # Plasma Active Application
 
 KDE plasma applet to show the active application name. Thought to be used in a panel together with plasma's global menu.
